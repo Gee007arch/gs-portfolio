@@ -17,6 +17,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--bg-color);
@@ -212,6 +216,13 @@ section h2::after {
     margin-bottom: 20px;
     box-shadow: var(--shadow);
     border-left: 5px solid var(--accent-color);
+    transition: var(--transition);
+}
+
+.timeline-item:hover {
+    transform: translateX(10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    border-left-width: 8px;
 }
 
 .timeline-item h3 {
@@ -327,6 +338,20 @@ section h2::after {
     margin-right: 15px;
     color: var(--text-light);
     text-align: center;
+    transition: var(--transition);
+}
+
+.contact-info li:hover i {
+    color: var(--accent-color);
+    transform: scale(1.2) rotate(5deg);
+}
+
+.contact-info a {
+    transition: var(--transition);
+}
+
+.contact-info a:hover {
+    color: var(--accent-color) !important;
 }
 
 .contact-form form {
