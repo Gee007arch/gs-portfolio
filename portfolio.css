@@ -52,7 +52,7 @@ img {
 
 /* Header & Nav */
 nav {
-    background-color: rgba(40, 2, 116, 0.85);
+    background-color: rgba(40, 2, 116, 0.95);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     color: var(--text-light);
@@ -68,11 +68,28 @@ nav .container {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 20px;
+    position: relative;
 }
 
 nav .logo {
     font-size: 1.5rem;
     font-weight: bold;
+    z-index: 1001;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-light);
+    margin: 3px 0;
+    transition: 0.4s;
 }
 
 nav ul {
@@ -407,82 +424,143 @@ footer {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* Responsive Design */
+@media screen and (max-width: 992px) {
+    .container {
+        padding: 0 30px;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
     nav .container {
-        flex-direction: column;
+        flex-direction: row;
+        padding: 1rem 20px;
+    }
+    
+    nav .logo {
+        margin-bottom: 0;
     }
     
     nav ul {
-        margin-top: 15px;
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: rgba(40, 2, 116, 0.98);
+        padding: 20px 0;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        gap: 0;
+    }
+
+    nav ul.active {
+        display: flex;
     }
     
-    .about-grid, .contact-container {
-        grid-template-columns: 1fr;
+    nav ul li {
+        margin: 15px 0;
+    }
+
+    nav a {
+        font-size: 1.1rem;
+        padding: 10px 20px;
+        background-color: transparent;
+        display: block;
+    }
+
+    /* Hamburger Animation */
+    .menu-toggle.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
     }
     
     .hero-content h1 {
         font-size: 2rem;
     }
-}
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    .about-grid, 
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .about-img {
+        order: -1; /* Image first on mobile */
+        text-align: center;
+    }
 
-/* Media Queries for Responsiveness */
-@media screen and (max-width: 768px) {
-    header h1 {
+    .about-img img {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+    
+    section {
+        padding: 60px 0;
+    }
+    
+    section h2 {
         font-size: 2rem;
-    }
-
-    header p {
-        font-size: 1rem;
-    }
-
-    nav ul li {
-        margin-right: 10px;
-    }
-
-    .pp img {
-        width: 100%;
-        float: none;
-        margin-top: 20px;
+        margin-bottom: 30px;
     }
 }
 
-@media screen and (max-width: 600px) {
-    .head {
-        flex-direction: column;
-        align-items: center;
+@media screen and (max-width: 480px) {
+    nav ul {
+        /* Remove previous grid style */
+        display: none; 
     }
 
-    .head div {
-        padding: 10px;
-    }
-
-    .head h1 {
-        padding: 20px;
-        font-size: 3rem;
-        text-align: center;
-    }
-
-    .head img {
-        width: 100px;
-    }
-
-    .head p {
-        font-size: 1rem;
-        text-align: center;
-    }
-
-    nav ul li {
-        margin-right: 5px;
-    }
-
-    .skills div {
-        flex-basis: calc(100%);
-        display: inline-block;
-        margin: 10px;
-    }
-    .skills {
+    nav ul.active {
         display: flex;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .project-grid,
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-info ul li {
+        font-size: 0.9rem;
         flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+    
+    .contact-info i {
+        margin-bottom: 5px;
+    }
+
+    .timeline-item {
+        padding: 15px;
     }
 }
